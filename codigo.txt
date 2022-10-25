@@ -1,0 +1,47 @@
+package br.edu.ifpr.matricula.conexao;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import br.edu.ifpr.acessar.dados.CampusDAO;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+		if (Conexao.getConexao() != null) {
+			System.out.println("Conectou no banco");
+		} else {
+			System.out.println("Erro ao conectar o BD");
+		}
+		
+		Scanner teclado = new Scanner(System.in);
+		System.out.print("Informe o nome do campus: ");
+		String nome = teclado.nextLine();
+		
+		System.out.print("Informe o endereco: ");
+		String endereco = teclado.nextLine();
+		
+		System.out.print("Informe a cidade: ");
+		String cidade = teclado.nextLine();
+
+		
+		CampusDAO campusDAO = new CampusDAO();
+		
+		Campus campus = new Campus();
+		campus.setNome(nome);
+		campus.setEndereco(endereco);
+		campus.setCidade(cidade);
+		
+		campusDAO.salvarCampus(campus);
+
+		ArrayList<Campus> listaCampus = campusDAO.listar();
+		
+		for (Campus c : listaCampus) {
+			System.out.println(c.getNome());
+			System.out.println(c.getEndereco());
+			System.out.println(c.getCidade());
+		}
+	}
+
+}

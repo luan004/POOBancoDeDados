@@ -9,12 +9,6 @@ public class TestaConexao {
 
 	public static void main(String[] args) {
 		
-//		if (Conexao.getConexao() != null) {
-//			System.out.println("Conectou no banco");
-//		} else {
-//			System.out.println("Erro ao conectar o BD");
-//		}
-//		
 		Scanner teclado = new Scanner(System.in);
 		
 		CampusDAO campusDAO = new CampusDAO();

@@ -4,51 +4,55 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import br.edu.ifpr.matricula.conexao.Conexao;
 import br.edu.ifpr.trabalho.poo.campus.Campus;
 
 public class CampusDAO {
 
-	public ArrayList<Campus> listar() {
+	public Campus lerDadosCampus() {
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Informe o nome do campus:");
+		String nome = teclado.nextLine();
+		System.out.println("Informe o endereço do campus:");
+		String endereco = teclado.nextLine();
+		System.out.println("Informe a cidade do campus:");
+		String cidade = teclado.nextLine();
+		Campus campus = new Campus(0, nome, endereco, cidade);
+		return campus;
+	}
+
+	public ArrayList<Campus> buscarCampi() {
 		ArrayList<Campus> listaDeCampus = new ArrayList<Campus>();
-		String SQL = "SELECT * FROM matricula.tb_campus";
-
+		String SQL = "SELECT * FROM tb_campus";
 		try {
-			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
-			ResultSet resultado = preparacaoDaInstrucao.executeQuery();
-
+			PreparedStatement SQLPreparada = Conexao.getConexao().prepareStatement(SQL);
+			ResultSet resultado = SQLPreparada.executeQuery();
 			while (resultado.next()) {
-				Campus campus = transformarResultSetEmObjeto(resultado);
+				Campus campus = new Campus();
+				campus.setIdCampus(resultado.getInt("id_campus"));
+				campus.setNome(resultado.getString("nome"));
+				campus.setEndereco(resultado.getString("endereco"));
+				campus.setCidade(resultado.getString("cidade"));
 				listaDeCampus.add(campus);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		} catch (Exception excecao) {
+			excecao.printStackTrace();
 		}
-
-		// executar sql, que resulta um resultset
-
-		// percorrer o resultset e transformar cada registro para objeto
-
-		// adicionar cada registro na listaDeCampus
 		return listaDeCampus;
 	}
-	
+
 	public void salvarCampus(Campus campus) {
 		String SQL = "INSERT INTO tb_campus (nome, endereco, cidade) VALUES (?, ?, ?)";
-		
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
 			preparacaoDaInstrucao.setString(1, campus.getNome());
 			preparacaoDaInstrucao.setString(2, campus.getEndereco());
 			preparacaoDaInstrucao.setString(3, campus.getCidade());
-			
 			preparacaoDaInstrucao.executeUpdate();
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException excecao) {
+			excecao.printStackTrace();
 		}
 	}
 
@@ -67,7 +71,5 @@ public class CampusDAO {
 		}
 
 	}
-	
-	
 
 }

@@ -6,6 +6,28 @@ public class Disciplina {
 	private int cargaHoraria;
 	private Professor professor;
 	private Turma turma;
+	private int idDisciplina;
+	
+	public Disciplina() {
+		
+	}
+	
+	public Disciplina(int idDisciplina, String nome, int cargaHoraria, Professor professor, Turma turma) {
+		this.idDisciplina = idDisciplina;
+		this.nome=nome;
+		this.cargaHoraria=cargaHoraria;
+		this.professor = professor;
+		this.turma = turma;
+	}
+	
+	public Disciplina(String nome, int cargaHoraria, Professor professor, Turma turma) {
+		this.nome=nome;
+		this.cargaHoraria=cargaHoraria;
+		this.professor = professor;
+		this.turma = turma;
+	}
+	
+	
 	
 	
 	
@@ -32,6 +54,14 @@ public class Disciplina {
 	}
 	public void setCargaHoraria(int cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
+	}
+
+	public int getIdDisciplina() {
+		return idDisciplina;
+	}
+
+	public void setIdDisciplina(int idDisciplina) {
+		this.idDisciplina = idDisciplina;
 	}
 	
 	

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import br.edu.ifpr.matricula.conexao.Conexao;
+import br.edu.ifpr.trabalho.poo.conexao.Conexao;
 import br.edu.ifpr.trabalho.poo.modelo.Professor;
 
 public class ProfessorDAO {
@@ -27,6 +27,7 @@ public class ProfessorDAO {
 		String dataNascimento = teclado.nextLine();
 		System.out.println("Informe o siape do professor:");
 		int siape = teclado.nextInt();
+		
 		
 		
 		Professor professor = new Professor(0, nome, cpf, telefone, endereco, dataNascimento, siape);

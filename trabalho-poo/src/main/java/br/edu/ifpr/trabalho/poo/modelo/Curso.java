@@ -1,7 +1,5 @@
 package br.edu.ifpr.trabalho.poo.modelo;
 
-import java.sql.ResultSet;
-
 public class Curso {
 	
 	private int idCurso;
@@ -10,7 +8,7 @@ public class Curso {
 	private String duracao;
 	private String modalidade;
 	
-	private Campus fkCampus;
+	private Campus campus;
 	
 	//private Campus campus;
 	
@@ -18,21 +16,20 @@ public class Curso {
 		
 	}
 	
-	public Curso(int idCurso, String nome, String duracao, String modalidade) {
-		this.setIdCurso(idCurso);
+	public Curso(String nome, String duracao, String modalidade, Campus campus) {
 		this.nome = nome;
 		this.duracao = duracao;
 		this.modalidade = modalidade;
-		//this.campus = campus;
+		this.campus = campus;
 	}
-
-//	public Campus getCampus() {
-//		return campus;
-//	}
-//
-//	public void setCampus(Campus campus) {
-//		this.campus = campus;
-//	}
+	
+	public Curso(int idCurso, String nome, String duracao, String modalidade,  Campus campus) {
+		this.idCurso = idCurso;
+		this.nome = nome;
+		this.duracao = duracao;
+		this.modalidade = modalidade;
+		this.campus = campus;
+	}
 
 	public String getNome() {
 		return nome;
@@ -66,10 +63,17 @@ public class Curso {
 		this.idCurso = idCurso;
 	}
 
-	public void setFkCampus(Object fkCampus) {
-		this.fkCampus = (Campus) fkCampus;
-		
+	
+	
+	public Campus getCampus() {
+		return campus;
 	}
+
+	public void setCampus(Campus campus) {
+		this.campus = campus;
+	}
+
+	
 
 
 

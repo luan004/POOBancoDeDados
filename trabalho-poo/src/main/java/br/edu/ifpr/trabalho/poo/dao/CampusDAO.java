@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import br.edu.ifpr.matricula.conexao.Conexao;
+import br.edu.ifpr.trabalho.poo.conexao.Conexao;
 import br.edu.ifpr.trabalho.poo.modelo.Campus;
 
 public class CampusDAO {

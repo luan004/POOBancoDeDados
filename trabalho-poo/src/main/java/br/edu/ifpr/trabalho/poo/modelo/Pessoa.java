@@ -9,11 +9,28 @@ public abstract class Pessoa {
 	protected String endereco;
 	protected String dataNascimento;
 	
-	public void imprimirDados() {
+	public abstract void imprimirDados();
+	
+	public Pessoa() {
 		
 	}
 	
+	public Pessoa(int idPessoa,String nome,String cpf,String telefone,String endereco,String dataNascimento) {
+		this.idPessoa=idPessoa;
+		this.nome = nome;
+		this.cpf=cpf;
+		this.telefone=telefone;
+		this.endereco=endereco;
+		this.dataNascimento=dataNascimento;
+	}
 	
+	public Pessoa(String nome,String cpf,String telefone,String endereco,String dataNascimento) {
+		this.nome = nome;
+		this.cpf=cpf;
+		this.telefone=telefone;
+		this.endereco=endereco;
+		this.dataNascimento=dataNascimento;
+	}
 
 	public int getIdPessoa() {
 		return idPessoa;

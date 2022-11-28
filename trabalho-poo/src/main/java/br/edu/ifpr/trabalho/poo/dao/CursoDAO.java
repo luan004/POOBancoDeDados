@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import br.edu.ifpr.matricula.conexao.Conexao;
+import br.edu.ifpr.trabalho.poo.conexao.Conexao;
+import br.edu.ifpr.trabalho.poo.modelo.Campus;
 import br.edu.ifpr.trabalho.poo.modelo.Curso;
 
 public class CursoDAO {
@@ -14,15 +15,20 @@ public class CursoDAO {
 	public static Curso lerDadosCurso() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
-		
 		System.out.println("Informe o nome do curso:");
 		String nome = teclado.nextLine();
-		System.out.println("Informe a duracao do curso:");
+		System.out.println("Informe a duração do curso:");
 		String duracao = teclado.nextLine();
-		System.out.println("Informe a modalidade do curso:");
+		System.out.println("Informe a modalidade do curso");
 		String modalidade = teclado.nextLine();
 		
-		Curso curso = new Curso(0, nome, duracao, modalidade);
+		System.out.println("Informe o código do campus");
+		int idCampus = teclado.nextInt();
+		
+		Campus campus = new Campus();
+		campus.setIdCampus(idCampus);
+		
+		Curso curso = new Curso(nome, duracao, modalidade, campus);
 		return curso;
 	}
 	
@@ -55,6 +61,8 @@ public class CursoDAO {
 			preparacaoDaInstrucao.setString(1, curso.getNome());
 			preparacaoDaInstrucao.setString(2, curso.getDuracao());
 			preparacaoDaInstrucao.setString(3, curso.getModalidade());
+			preparacaoDaInstrucao.setInt(4, curso.getCampus().getIdCampus());
+			
 			preparacaoDaInstrucao.executeUpdate();
 		} catch (SQLException excecao) {
 			excecao.printStackTrace();
@@ -69,7 +77,6 @@ public class CursoDAO {
 			curso.setNome(resultSet.getString("nome"));
 			curso.setDuracao(resultSet.getString("duracao"));
 			curso.setModalidade(resultSet.getString("modalidade"));
-			curso.setFkCampus(resultSet.getObject("fk_campus"));
 			return curso;
 		} catch (SQLException e) {
 			e.printStackTrace();

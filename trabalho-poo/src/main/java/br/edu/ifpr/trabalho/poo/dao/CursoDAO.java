@@ -12,7 +12,7 @@ import br.edu.ifpr.trabalho.poo.modelo.Curso;
 
 public class CursoDAO {
 
-	public static Curso lerDadosCurso() {
+	public Curso lerDadosCurso() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
 		System.out.println("Informe o nome do curso:");
@@ -62,7 +62,7 @@ public class CursoDAO {
 			preparacaoDaInstrucao.setString(2, curso.getNome());
 			preparacaoDaInstrucao.setString(3, curso.getDuracao());
 			preparacaoDaInstrucao.setString(4, curso.getModalidade());
-			preparacaoDaInstrucao.setInt(4, curso.getCampus().getIdCampus());
+			preparacaoDaInstrucao.setInt(5, curso.getCampus().getIdCampus());
 			
 			preparacaoDaInstrucao.executeUpdate();
 		} catch (SQLException excecao) {
@@ -78,6 +78,9 @@ public class CursoDAO {
 			curso.setNome(resultSet.getString("nome"));
 			curso.setDuracao(resultSet.getString("duracao"));
 			curso.setModalidade(resultSet.getString("modalidade"));
+			
+			//curso.setCampus(resultSet.getCampus("fk_campus"));
+			
 			return curso;
 		} catch (SQLException e) {
 			e.printStackTrace();

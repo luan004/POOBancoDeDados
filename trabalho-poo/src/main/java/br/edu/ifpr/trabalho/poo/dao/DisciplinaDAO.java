@@ -13,7 +13,8 @@ import br.edu.ifpr.trabalho.poo.modelo.Turma;
 
 public class DisciplinaDAO {
 
-	public static Disciplina lerDadosDisciplina() {
+	public 
+	Disciplina lerDadosDisciplina() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
 		
@@ -34,6 +35,19 @@ public class DisciplinaDAO {
 		
 		Turma turma = new Turma();
 		turma.setIdTurma(idTurma);
+		
+		Disciplina disciplina = new Disciplina(0, nome, cargaHoraria, professor, turma);
+		return disciplina;
+	}
+	
+	public Disciplina lerDadosDisciplina(Professor professor, Turma turma) {
+		@SuppressWarnings("resource")
+		Scanner teclado = new Scanner(System.in);
+		
+		System.out.println("Informe o nome do disciplina:");
+		String nome = teclado.nextLine();
+		System.out.println("Informe a carga Horaria da disciplina:");
+		int cargaHoraria = teclado.nextInt();
 		
 		Disciplina disciplina = new Disciplina(0, nome, cargaHoraria, professor, turma);
 		return disciplina;

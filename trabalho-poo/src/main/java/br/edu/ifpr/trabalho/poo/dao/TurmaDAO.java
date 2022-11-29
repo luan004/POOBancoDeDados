@@ -12,7 +12,7 @@ import br.edu.ifpr.trabalho.poo.modelo.Turma;
 
 public class TurmaDAO {
 
-	public static Turma lerDadosTurma() {
+	public Turma lerDadosTurma() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
 		
@@ -32,6 +32,23 @@ public class TurmaDAO {
 		Turma turma = new Turma(0, nome, numeroMinimo, anoIngresso, curso);
 		return turma;
 	}
+	
+	public Turma lerDadosTurma(Curso curso) {
+		@SuppressWarnings("resource")
+		Scanner teclado = new Scanner(System.in);
+		
+		System.out.println("Informe o nome da turma:");
+		String nome = teclado.nextLine();
+		System.out.println("Informe o numero minimo da turma:");
+		int numeroMinimo = teclado.nextInt();
+		System.out.println("Informe a ano de ingresso da turma:");
+		int anoIngresso = teclado.nextInt();
+		
+		Turma turma = new Turma(0, nome, numeroMinimo, anoIngresso, curso);
+		return turma;
+	}
+	
+	
 	
 	public ArrayList<Turma> buscarTurmas() {
 		ArrayList<Turma> listaDeTurmas = new ArrayList<Turma>();

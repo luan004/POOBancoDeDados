@@ -57,7 +57,7 @@ public class ProfessorDAO {
 	}
 
 	public void salvarProfessor(Professor professor) {
-		String SQL = "INSERT INTO tb_professor (id_professor, nome, cpf, telefone, endereco, data_nascimento) VALUES (?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO tb_professor (id_pessoa, nome, cpf, telefone, endereco, data_nascimento) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
 			preparacaoDaInstrucao.setInt(1, professor.getIdPessoa());

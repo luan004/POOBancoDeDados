@@ -13,7 +13,7 @@ import br.edu.ifpr.trabalho.poo.modelo.Turma;
 
 public class MatriculaDAO {
 
-	public static Matricula lerDadosMatricula() {
+	public Matricula lerDadosMatricula() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
 		System.out.println("Informe o ra da matricula:");
@@ -36,6 +36,21 @@ public class MatriculaDAO {
 		
 		Aluno aluno = new Aluno();
 		aluno.setIdPessoa(IdPessoa);
+		
+		Matricula matricula = new Matricula(ra, data, situacao, turma, aluno);
+		return matricula;
+	}
+	
+	public Matricula lerDadosMatricula(Aluno aluno, Turma turma) {
+		@SuppressWarnings("resource")
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Informe o ra da matricula:");
+		String ra = teclado.nextLine();
+		System.out.println("Informe a data da matricula:");
+		String data = teclado.nextLine();
+		
+		System.out.println("Informe a situação da matricula (EM BOOLEAN \"true\" OU \"false\")");
+		boolean situacao = teclado.nextBoolean();
 		
 		Matricula matricula = new Matricula(ra, data, situacao, turma, aluno);
 		return matricula;
@@ -95,6 +110,8 @@ public class MatriculaDAO {
 		}
 
 	}
+
+
 
 
 }

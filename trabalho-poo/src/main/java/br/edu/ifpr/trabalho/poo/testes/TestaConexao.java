@@ -11,7 +11,6 @@ public class TestaConexao {
 		Campus campus = campusDAO.lerDadosCampus();
 
 		campusDAO.salvarCampus(campus);
-		
 		campusDAO.buscarCampi();
 
 	}

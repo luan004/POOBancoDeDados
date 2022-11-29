@@ -2,15 +2,12 @@ package br.edu.ifpr.trabalho.poo.modelo;
 
 public class Professor extends Pessoa {
 
-
-	private int idProfessor;
 	private int siape;
-	
-	
+
 	public Professor() {
-		
+
 	}
-	
+
 	public Professor(String nome, String cpf, String telefone, String endereco, String dataNascimento, int siape) {
 		this.nome = nome;
 		this.cpf = cpf;
@@ -19,8 +16,9 @@ public class Professor extends Pessoa {
 		this.dataNascimento = dataNascimento;
 		this.siape = siape;
 	}
-	
-	public Professor(int idPessoa, String nome, String cpf, String telefone, String endereco, String dataNascimento, int siape) {
+
+	public Professor(int idPessoa, String nome, String cpf, String telefone, String endereco, String dataNascimento,
+			int siape) {
 		this.idPessoa = idPessoa;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -28,13 +26,6 @@ public class Professor extends Pessoa {
 		this.endereco = endereco;
 		this.dataNascimento = dataNascimento;
 		this.siape = siape;
-	}
-	
-	
-	
-
-	public int getIdProfessor() {
-		return idProfessor;
 	}
 
 	public int getSiape() {
@@ -45,23 +36,21 @@ public class Professor extends Pessoa {
 		this.siape = siape;
 	}
 
-
 	public void setIdProfessor(int int1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void imprimirDados() {
-		// TODO Auto-generated method stub
+		System.out.println(""
+				+ "Nome: " + getNome() + "\n"
+				+ "CPF: " + getCpf() + "\n"
+				+ "Telefone: " + getTelefone() + "\n"
+				+ "Endereco: " + getEndereco() + "\n"
+				+ "Data de Nascimento: " + getDataNascimento() + "\n"
+				+ "Siape: " + getSiape());
 		
 	}
-
-	
-	
-	
-	
-	
-	
 
 }

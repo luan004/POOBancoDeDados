@@ -56,14 +56,14 @@ public class TurmaDAO {
 	}
 	
 	public void salvarTurma(Turma turma) {
-		String SQL = "INSERT INTO tb_turma (nome, numeroMinimo, anoIngresso) VALUES (?, ?, ?)";
+		String SQL = "INSERT INTO tb_turma (id_turma, nome, numeroMinimo, anoIngresso, fk_curso) VALUES (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
-			preparacaoDaInstrucao.setString(1, turma.getNome());
-			preparacaoDaInstrucao.setInt(2, turma.getNumeroMinimo());
-			preparacaoDaInstrucao.setInt(3, turma.getAnoIngresso());
-			
-			preparacaoDaInstrucao.setInt(4, turma.getCurso().getIdCurso());
+			preparacaoDaInstrucao.setInt(1, turma.getIdTurma());
+			preparacaoDaInstrucao.setString(2, turma.getNome());
+			preparacaoDaInstrucao.setInt(3, turma.getNumeroMinimo());
+			preparacaoDaInstrucao.setInt(4, turma.getAnoIngresso());
+			preparacaoDaInstrucao.setInt(5, turma.getCurso().getIdCurso());
 			
 			preparacaoDaInstrucao.executeUpdate();
 		} catch (SQLException excecao) {

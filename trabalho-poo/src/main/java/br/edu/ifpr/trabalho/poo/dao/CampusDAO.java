@@ -14,14 +14,14 @@ public class CampusDAO {
 	public Campus lerDadosCampus() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
-		
+
 		System.out.println("Informe o nome do campus:");
 		String nome = teclado.nextLine();
 		System.out.println("Informe o endereço do campus:");
 		String endereco = teclado.nextLine();
 		System.out.println("Informe a cidade do campus:");
 		String cidade = teclado.nextLine();
-		
+
 		Campus campus = new Campus(0, nome, endereco, cidade);
 		return campus;
 	}
@@ -47,19 +47,20 @@ public class CampusDAO {
 	}
 
 	public void salvarCampus(Campus campus) {
-		String SQL = "INSERT INTO tb_campus (nome, endereco, cidade) VALUES (?, ?, ?)";
+		String SQL = "INSERT INTO tb_campus (id_campus, nome, endereco, cidade) VALUES (?, ?, ?, ?)";
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
-			preparacaoDaInstrucao.setString(1, campus.getNome());
-			preparacaoDaInstrucao.setString(2, campus.getEndereco());
-			preparacaoDaInstrucao.setString(3, campus.getCidade());
+			preparacaoDaInstrucao.setInt(1, campus.getIdCampus());
+			preparacaoDaInstrucao.setString(2, campus.getNome());
+			preparacaoDaInstrucao.setString(3, campus.getEndereco());
+			preparacaoDaInstrucao.setString(4, campus.getCidade());
 			preparacaoDaInstrucao.executeUpdate();
 		} catch (SQLException excecao) {
 			excecao.printStackTrace();
 		}
 	}
 
-	//Transformacao
+	// Transformacao
 	public Campus transformarResultSetEmObjeto(ResultSet resultSet) throws SQLException {
 		Campus campus = new Campus();
 		try {

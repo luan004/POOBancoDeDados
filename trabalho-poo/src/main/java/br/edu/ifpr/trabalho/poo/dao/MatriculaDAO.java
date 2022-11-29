@@ -64,13 +64,13 @@ public class MatriculaDAO {
 	}
 	
 	public void salvarMatricula(Matricula matricula) {
-		String SQL = "INSERT INTO tb_matricula (ra, data, situacao) VALUES (?, ?, ?)";
+		String SQL = "INSERT INTO tb_matricula (id_matricula, ra, data, situacao, fk_turma, fk_aluno) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
+			preparacaoDaInstrucao.setInt(1, matricula.getIdMatricula());
 			preparacaoDaInstrucao.setString(1, matricula.getRa());
 			preparacaoDaInstrucao.setString(2, matricula.getData());
 			preparacaoDaInstrucao.setBoolean(3, matricula.getSituacao());
-			
 			preparacaoDaInstrucao.setInt(4, matricula.getTurma().getIdTurma());
 			preparacaoDaInstrucao.setInt(5, matricula.getAluno().getIdPessoa());
 			

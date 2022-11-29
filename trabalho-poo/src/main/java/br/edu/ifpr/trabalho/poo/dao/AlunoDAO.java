@@ -55,21 +55,22 @@ public class AlunoDAO {
 		return listaDeAluno;
 	}
 
-	public void salvarAluno(Aluno aluno) {
-		String SQL = "INSERT INTO tb_aluno (nome, cpf, telefone, endereco, data_nascimento) VALUES (?, ?, ?)";
-		try {
-			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
-			preparacaoDaInstrucao.setString(1, aluno.getNome());
-			preparacaoDaInstrucao.setString(2, aluno.getCpf());
-			preparacaoDaInstrucao.setString(3, aluno.getTelefone());
-			preparacaoDaInstrucao.setString(4, aluno.getEndereco());
-			preparacaoDaInstrucao.setString(5, aluno.getDataNascimento());
-			
-			preparacaoDaInstrucao.executeUpdate();
-		} catch (SQLException excecao) {
-			excecao.printStackTrace();
-		}
-	}
+    public void salvarAluno(Aluno aluno) {
+        String SQL = "INSERT INTO tb_aluno (id_aluno, nome, cpf, telefone, endereco, data_nascimento) VALUES (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
+            preparacaoDaInstrucao.setInt(1, aluno.getIdPessoa());
+            preparacaoDaInstrucao.setString(2, aluno.getNome());
+            preparacaoDaInstrucao.setString(3, aluno.getCpf());
+            preparacaoDaInstrucao.setString(4, aluno.getTelefone());
+            preparacaoDaInstrucao.setString(5, aluno.getEndereco());
+            preparacaoDaInstrucao.setString(6, aluno.getDataNascimento());
+            
+            preparacaoDaInstrucao.executeUpdate();
+        } catch (SQLException excecao) {
+            excecao.printStackTrace();
+        }
+    }
 
 	// Transformacao
 	public Aluno transformarResultSetEmObjeto(ResultSet resultSet) throws SQLException {

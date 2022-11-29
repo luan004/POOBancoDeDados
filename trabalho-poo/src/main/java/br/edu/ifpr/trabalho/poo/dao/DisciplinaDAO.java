@@ -61,13 +61,14 @@ public class DisciplinaDAO {
 	}
 	
 	public void salvarDisciplina(Disciplina disciplina) {
-		String SQL = "INSERT INTO tb_disciplina (nome, cargaHoraria) VALUES (?, ?, ?)";
+		String SQL = "INSERT INTO tb_disciplina (id_disciplina, nome, cargaHoraria, fk_professor, fk_turma) VALUES (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
-			preparacaoDaInstrucao.setString(1, disciplina.getNome());
-			preparacaoDaInstrucao.setInt(2, disciplina.getCargaHoraria());
-			preparacaoDaInstrucao.setInt(3, disciplina.getProfessor().getIdProfessor());
-			preparacaoDaInstrucao.setInt(4, disciplina.getTurma().getIdTurma());
+			preparacaoDaInstrucao.setInt(1, disciplina.getIdDisciplina());
+			preparacaoDaInstrucao.setString(2, disciplina.getNome());
+			preparacaoDaInstrucao.setInt(3, disciplina.getCargaHoraria());
+			preparacaoDaInstrucao.setInt(4, disciplina.getProfessor().getIdPessoa());
+			preparacaoDaInstrucao.setInt(5, disciplina.getTurma().getIdTurma());
 			
 			preparacaoDaInstrucao.executeUpdate();
 		} catch (SQLException excecao) {

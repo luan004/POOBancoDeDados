@@ -55,12 +55,13 @@ public class CursoDAO {
 	}
 	
 	public void salvarCurso(Curso curso) {
-		String SQL = "INSERT INTO tb_curso (nome, duracao, modalidade) VALUES (?, ?, ?)";
+		String SQL = "INSERT INTO tb_curso (id_curso, nome, duracao, modalidade, fk_campus) VALUES (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
-			preparacaoDaInstrucao.setString(1, curso.getNome());
-			preparacaoDaInstrucao.setString(2, curso.getDuracao());
-			preparacaoDaInstrucao.setString(3, curso.getModalidade());
+			preparacaoDaInstrucao.setInt(1, curso.getIdCurso());
+			preparacaoDaInstrucao.setString(2, curso.getNome());
+			preparacaoDaInstrucao.setString(3, curso.getDuracao());
+			preparacaoDaInstrucao.setString(4, curso.getModalidade());
 			preparacaoDaInstrucao.setInt(4, curso.getCampus().getIdCampus());
 			
 			preparacaoDaInstrucao.executeUpdate();
